@@ -12,7 +12,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender gender;
+  Gender _gender;
+  int _height = 170;
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +31,16 @@ class _InputPageState extends State<InputPage> {
                   child: BmiCard(
                     onPressed: () {
                       setState(() {
-                        gender = Gender.male;
+                        _gender = Gender.male;
                       });
                     },
-                    color: gender == Gender.male
+                    color: _gender == Gender.male
                         ? kActiveCardColor
                         : kInactiveCardColor,
                     child: GenderCardContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
-                      color: gender == Gender.male
+                      color: _gender == Gender.male
                           ? kActiveCardContentColor
                           : kInactiveCardContentColor,
                     ),
@@ -49,16 +50,16 @@ class _InputPageState extends State<InputPage> {
                   child: BmiCard(
                     onPressed: () {
                       setState(() {
-                        gender = Gender.female;
+                        _gender = Gender.female;
                       });
                     },
-                    color: gender == Gender.female
+                    color: _gender == Gender.female
                         ? kActiveCardColor
                         : kInactiveCardColor,
                     child: GenderCardContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
-                      color: gender == Gender.female
+                      color: _gender == Gender.female
                           ? kActiveCardContentColor
                           : kInactiveCardContentColor,
                     ),
@@ -82,7 +83,7 @@ class _InputPageState extends State<InputPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: <Widget>[
                       Text(
-                        '170',
+                        _height.toString(),
                         style: kCardNumberTextStyle,
                       ),
                       Text(
@@ -91,6 +92,16 @@ class _InputPageState extends State<InputPage> {
                       )
                     ],
                   ),
+                  Slider(
+                    value: _height.toDouble(),
+                    min: 110.0,
+                    max: 250.0,
+                    onChanged: (double height) {
+                      setState(() {
+                        _height = height.round();
+                      });
+                    },
+                  )
                 ],
               ),
             ),
