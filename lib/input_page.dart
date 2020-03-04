@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'bmi_card.dart';
-
-const footerHeight = 80.0;
-const footerColor = Color(0xFFEA1556);
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const activeCardContentColor = Color(0xFFFFFEFF);
-const inactiveCardContentColor = Color(0xFF8E8E9B);
+import 'constants.dart';
 
 enum Gender { male, female }
 
@@ -39,14 +33,14 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: gender == Gender.male
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     child: GenderCardContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
                       color: gender == Gender.male
-                          ? activeCardContentColor
-                          : inactiveCardContentColor,
+                          ? kActiveCardContentColor
+                          : kInactiveCardContentColor,
                     ),
                   ),
                 ),
@@ -58,14 +52,14 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: gender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     child: GenderCardContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
                       color: gender == Gender.female
-                          ? activeCardContentColor
-                          : inactiveCardContentColor,
+                          ? kActiveCardContentColor
+                          : kInactiveCardContentColor,
                     ),
                   ),
                 ),
@@ -77,7 +71,7 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: BmiCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                   ),
                 ),
               ],
@@ -88,22 +82,22 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: BmiCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                   ),
                 ),
                 Expanded(
                   child: BmiCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: footerColor,
+            color: kFooterColor,
             margin: EdgeInsets.only(top: 12.0),
             width: double.infinity,
-            height: footerHeight,
+            height: kFooterHeight,
           )
         ],
       ),

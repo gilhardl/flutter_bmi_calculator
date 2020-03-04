@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
+
 class BmiCard extends StatelessWidget {
   BmiCard({@required this.color, this.child, this.onPressed});
 
@@ -49,10 +51,7 @@ class GenderCardContent extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: color,
-          ),
+          style: kCardLabelTextStyle,
         )
       ],
     );
