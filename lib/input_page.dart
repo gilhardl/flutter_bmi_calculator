@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'bmi_card.dart';
 
 const footerHeight = 80.0;
 const footerColor = Color(0xFFEA1556);
 const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF101427);
+const inactiveCardColor = Color(0xFF111328);
+const activeCardContentColor = Color(0xFFFFFEFF);
+const inactiveCardContentColor = Color(0xFF8E8E9B);
+
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -11,6 +18,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender gender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +32,45 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: BmiCard(
-                    color: activeCardColor,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        gender = Gender.male;
+                      });
+                    },
+                    child: BmiCard(
+                      color: gender == Gender.male
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      child: GenderCardContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                        color: gender == Gender.male
+                            ? activeCardContentColor
+                            : inactiveCardContentColor,
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: BmiCard(
-                    color: activeCardColor,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        gender = Gender.female;
+                      });
+                    },
+                    child: BmiCard(
+                      color: gender == Gender.female
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      child: GenderCardContent(
+                        icon: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                        color: gender == Gender.female
+                            ? activeCardContentColor
+                            : inactiveCardContentColor,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -69,23 +110,6 @@ class _InputPageState extends State<InputPage> {
             height: footerHeight,
           )
         ],
-      ),
-    );
-  }
-}
-
-class BmiCard extends StatelessWidget {
-  BmiCard({@required this.color});
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
     );
   }
