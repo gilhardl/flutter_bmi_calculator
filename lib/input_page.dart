@@ -93,15 +93,33 @@ class _InputPageState extends State<InputPage> {
                       )
                     ],
                   ),
-                  Slider(
-                    value: _height.toDouble(),
-                    min: 110.0,
-                    max: 250.0,
-                    onChanged: (double height) {
-                      setState(() {
-                        _height = height.round();
-                      });
-                    },
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: kActiveCardContentColor,
+                      inactiveTrackColor: kInactiveCardContentColor,
+                      trackHeight: 2.2,
+                      thumbColor: kAccentColor,
+                      thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 16.0,
+                      ),
+                      overlayShape: RoundSliderOverlayShape(
+                        overlayRadius: 28.0,
+                      ),
+                      overlayColor: kAccentColor.withOpacity(0.16),
+                    ),
+                    child: Slider(
+                      value: _height.toDouble(),
+                      min: 110.0,
+                      max: 250.0,
+                      onChanged: (double height) {
+                        setState(() {
+                          _height = height.round();
+                        });
+                      },
+                    ),
                   )
                 ],
               ),
@@ -124,7 +142,7 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-            color: kFooterColor,
+            color: kAccentColor,
             margin: EdgeInsets.only(top: 12.0),
             width: double.infinity,
             height: kFooterHeight,
