@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/bmi_controller.dart';
 import 'package:bmi_calculator/components/bmi_card.dart';
 import 'package:bmi_calculator/components/footer_button.dart';
 import 'package:bmi_calculator/components/gender_card_content.dart';
@@ -19,6 +20,8 @@ class _InputPageState extends State<InputPage> {
   int _height = 170;
   int _weight = 65;
   int _age = 20;
+
+  BmiController _bmiCtrl;
 
   @override
   Widget build(BuildContext context) {
@@ -226,12 +229,20 @@ class _InputPageState extends State<InputPage> {
           ),
           FooterButton(
             label: 'CALCULATE YOUR BMI',
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ResultsPage(),
-              ),
-            ),
+            onTap: () {
+              _bmiCtrl = BmiController(height: _height, weight: _weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    resultValue: _bmiCtrl.calculate(),
+                    result: _bmiCtrl.getResult(),
+                    resultInterpretation: _bmiCtrl.getInterpretation(),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
