@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,6 +15,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender _gender;
   int _height = 170;
+  int _weight = 65;
+  int _age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -131,24 +134,139 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: BmiCard(
                     color: kActiveCardColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: kCardLabelTextStyle,
+                        ),
+                        Text(
+                          _weight.toString(),
+                          style: kCardNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              color: kInactiveCardContentColor,
+                              onPressed: () {
+                                setState(() {
+                                  _weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 12.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              color: kInactiveCardContentColor,
+                              onPressed: () {
+                                setState(() {
+                                  _weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: BmiCard(
                     color: kActiveCardColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: kCardLabelTextStyle,
+                        ),
+                        Text(
+                          _age.toString(),
+                          style: kCardNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              color: kInactiveCardContentColor,
+                              onPressed: () {
+                                setState(() {
+                                  _age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 12.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              color: kInactiveCardContentColor,
+                              onPressed: () {
+                                setState(() {
+                                  _age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: kAccentColor,
-            margin: EdgeInsets.only(top: 12.0),
-            width: double.infinity,
-            height: kFooterHeight,
-          )
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultsPage(),
+              ),
+            ),
+            child: Container(
+              child: Center(
+                child: Text(
+                  'CALCULATE YOUR BMI',
+                  style: kFooterLabelTextStyle,
+                ),
+              ),
+              color: kAccentColor,
+              margin: EdgeInsets.only(top: 12.0),
+              width: double.infinity,
+              height: kFooterHeight,
+            ),
+          ),
         ],
       ),
+    );
+  }
+}
+
+class RoundedIconButton extends StatelessWidget {
+  Color color;
+  IconData icon;
+  VoidCallback onPressed;
+
+  RoundedIconButton({this.icon, this.color, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: onPressed,
+      elevation: 0.0,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: color,
     );
   }
 }
