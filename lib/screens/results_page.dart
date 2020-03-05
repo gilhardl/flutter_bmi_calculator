@@ -1,4 +1,5 @@
-import 'package:bmi_calculator/bmi_card.dart';
+import 'package:bmi_calculator/components/bmi_card.dart';
+import 'package:bmi_calculator/components/footer_button.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -52,20 +53,9 @@ class _ResultsPageState extends State<ResultsPage> {
                 ),
               ),
             ),
-            GestureDetector(
+            FooterButton(
+              label: 'RE-CALCULATE YOUR BMI',
               onTap: () => Navigator.pop(context),
-              child: Container(
-                child: Center(
-                  child: Text(
-                    'RE-CALCULATE YOUR BMI',
-                    style: kFooterLabelTextStyle,
-                  ),
-                ),
-                color: kAccentColor,
-                margin: EdgeInsets.only(top: 12.0),
-                width: double.infinity,
-                height: kFooterHeight,
-              ),
             ),
           ],
         ));
